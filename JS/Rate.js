@@ -26,22 +26,23 @@ const triggers = [
         /(r B' r' )|(R b' R' )|(B r' B' )|(b R' b' )/g,  /(r' B r )|(R' b R )|(B' r B )|(b' R b )/g],
 
     //DEDUCTION1
-    [/(R' r' R' r' )|(B' R' B' R' )|(b' B' b' B' )|(r' b' r' b' )/g, /(R r R' r )|(B R B' R )|(b B b' B )|(r b r' b )/g],
+    [/(R' r' R' r' )|(B' R' B' R' )|(b' B' b' B' )|(r' b' r' b' )/g, /(R r R' r )|(B R B' R )|(b B b' B )|(r b r' b )/g,
+    /(r B r )|(R b R )|(B r B )|(b R b )/g, /(r' B' r' )|(R' b' R' )|(B' r' B' )|(b' R' b' )/g, /(B R' B R' )|(R r' R r' )|(b B' b B' )|(r b' r b' )/g],
 
     //DEDUCTION2
-    [/(r B r )|(R b R )|(B r B )|(b R b )/g, /(r' B' r' )|(R' b' R' )|(B' r' B' )|(b' R' b' )/g, /(B R' B R' )|(R r' R r' )|(b B' b B' )|(r b' r b' )/g],
+    [/(R r R r )|(B R B R )|(b B b B )|(r b r b )/g],
 
     //DEDUCTION3
     [],
 
     //DEDUCTION4
-    [/(R r R r )|(B R B R )|(b B b B )|(r b r b )/g],
+    [],
 
     //BONUS1
     [],
 
     //BONUS2
-    [/(r' R r R )|(R' B R B )|(B' b B b )|(b' r b r )/g, /(r' B r' )|(R' b R' )|(B' r B' )|(b' R b' )/g,
+    [/(r' R r R )|(R' B R B )|(B' b B b )|(b' r b r )/g,
         /(B R r R' )|(b B R B' )|(r b B b' )|(R r b r' )/g,/(B' R r R' )|(b' B R B' )|(r' b B b' )|(R' r b r' )/g ],
 
     //BONUS3
@@ -52,6 +53,7 @@ const triggers = [
 ];
 
 function rate(input, cancelMove = "") {
+    console.log("1");
     let algs = input.split(/\n/);
     let ratedAlgs = []
     algs.forEach(alg => {
@@ -69,7 +71,7 @@ function rate(input, cancelMove = "") {
 
 function rateAlg(input, cancelMove) {
     let score=0;
-
+    console.log("2");
     let temp = input;
 
     if (cancelMove!=="") {
@@ -124,7 +126,8 @@ function rateAlg(input, cancelMove) {
         }
     }
     score += moveCountReward(input);
-
+        
+    console.log("3 " + score);
     return [score, rotateOptimally(input)]
 }
 
@@ -140,12 +143,15 @@ function moveCount(input) {
 }
 
 function moveCountReward(input) {
-    const move = moveCount(input)
+    console.log(moveCount(input));
+    let move = moveCount(input)
+    console.log(move + " " + input);
     if (move < 9) {
         return (9 - move) * 1.75  
     }
-    if (move > 9) {
+    else if (move > 9) {
         return (9 - move) * 1.25  
     }
+    return 0;
 }
 
