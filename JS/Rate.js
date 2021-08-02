@@ -70,6 +70,7 @@ function rate(input, cancelMove = "") {
 
 function rateAlg(input, cancelMove) {
     let score=0;
+    input += " "
     let temp = input;
 
     if (cancelMove!=="") {
