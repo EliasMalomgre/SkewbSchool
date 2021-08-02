@@ -53,7 +53,6 @@ const triggers = [
 ];
 
 function rate(input, cancelMove = "") {
-    console.log("1");
     let algs = input.split(/\n/);
     let ratedAlgs = []
     algs.forEach(alg => {
@@ -71,7 +70,6 @@ function rate(input, cancelMove = "") {
 
 function rateAlg(input, cancelMove) {
     let score=0;
-    console.log("2");
     let temp = input;
 
     if (cancelMove!=="") {
@@ -127,7 +125,6 @@ function rateAlg(input, cancelMove) {
     }
     score += moveCountReward(input);
         
-    console.log("3 " + score);
     return [score, rotateOptimally(input)]
 }
 
@@ -143,9 +140,7 @@ function moveCount(input) {
 }
 
 function moveCountReward(input) {
-    console.log(moveCount(input));
     let move = moveCount(input)
-    console.log(move + " " + input);
     if (move < 9) {
         return (9 - move) * 1.75  
     }
