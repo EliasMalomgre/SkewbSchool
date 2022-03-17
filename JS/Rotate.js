@@ -14,6 +14,7 @@ const inverse = ["r'","r","R'","R","b'","b","B'","B","z'","z","z2","l'","l","L'"
 const space = ["r ","r' ","R ","R' ","b ","b' ","B ","B' ","z ","z' ","z2 ","l ","l' ","L ","L' ","f ","f' ","F ","F' "];
 
 function rotate(input, rotation) {
+    input.replace('’', '\'');
 
     switch (rotation) {
         case "z":
